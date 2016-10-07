@@ -20,7 +20,7 @@ public class GraphGenerator {
 	
 	
 	
-	public static int[][] getGraphOfSize(int sizeIn)
+	public int[][] getGraphOfSize(int sizeIn)
 	{
 		Random rand = new Random();
 		int[][] graph = new int[sizeIn][sizeIn];
@@ -44,7 +44,7 @@ public class GraphGenerator {
 	{
 		int size = 3;
 		GraphGenerator testGraph = new GraphGenerator();
-		int[][] graph = getGraphOfSize(size);
+		int[][] graph = testGraph.getGraphOfSize(size);
 		
 		for(int x = 0; x <size; x++)
 		{
