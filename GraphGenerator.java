@@ -40,11 +40,59 @@ public class GraphGenerator {
 		return graph;
 	}
 	
+	public int routeValue(int[] route, int[][] graph)
+	{
+		int value = 0;
+		int currentNode = 0;
+		int nextNode = 0;
+		
+		//Route returns to the start state, so its length should equal the length of the graph + 1.
+		if(route.length != graph.length)
+		{
+			System.out.println("Route length not equal to graph length.");
+			return -1;
+		}
+		else
+		{
+			for(int x = 0; x < route.length-1;x++)
+			{
+				currentNode = route[x];
+				nextNode = route[x+1];
+				value = value + graph[currentNode][nextNode];
+			}
+			
+			value = value + graph[nextNode][route[0]];
+			
+		}
+		return value;
+	}
+	
+	public ArrayList<int[]> getNeighborList(int[] route)
+	{
+		ArrayList<int[]> neighborList = null;
+		
+		for(int x = 0; x < route.length; x++)
+		{
+			int[] neighbor = route;
+			int temp = neighbor[x];
+			neighbor[x] = neighbor[x+1];
+			neighbor[x+1] = temp;
+			neighborList.add(neighbor);
+		}
+		
+		return neighborList;
+	}
+	
+	
 	public static void main(String[] args)
 	{
-		int size = 3;
+		int size = 5;
 		GraphGenerator testGraph = new GraphGenerator();
 		int[][] graph = testGraph.getGraphOfSize(size);
+		
+		int[] route = {0,1,2,3,4};
+		int[] route2 = {1,0,2,3,4};
+		int[] route3 = {0,2,1,4,3};
 		
 		for(int x = 0; x <size; x++)
 		{
@@ -54,6 +102,11 @@ public class GraphGenerator {
 			}
 			System.out.println();
 		}
+		
+		System.out.println(testGraph.routeValue(route,graph));
+		System.out.println(testGraph.routeValue(route2,graph));
+		System.out.println(testGraph.routeValue(route3,graph));
+		
 	}
 	
 	
