@@ -69,11 +69,12 @@ public class GraphGenerator {
 	
 	public ArrayList<int[]> getNeighborList(int[] route)
 	{
-		ArrayList<int[]> neighborList = null;
+		ArrayList<int[]> neighborList = new ArrayList<int[]>();
 		
-		for(int x = 0; x < route.length; x++)
+		for(int x = 0; x < route.length-1; x++)
 		{
-			int[] neighbor = route;
+			int[] neighbor = new int[route.length];
+			System.arraycopy(route, 0, neighbor, 0, route.length);
 			int temp = neighbor[x];
 			neighbor[x] = neighbor[x+1];
 			neighbor[x+1] = temp;
@@ -91,8 +92,6 @@ public class GraphGenerator {
 		int[][] graph = testGraph.getGraphOfSize(size);
 		
 		int[] route = {0,1,2,3,4};
-		int[] route2 = {1,0,2,3,4};
-		int[] route3 = {0,2,1,4,3};
 		
 		for(int x = 0; x <size; x++)
 		{
@@ -104,8 +103,16 @@ public class GraphGenerator {
 		}
 		
 		System.out.println(testGraph.routeValue(route,graph));
-		System.out.println(testGraph.routeValue(route2,graph));
-		System.out.println(testGraph.routeValue(route3,graph));
+		ArrayList<int[]> neighbors = testGraph.getNeighborList(route);
+		
+		for(int x = 0; x < neighbors.size();x++)
+		{
+			for(int y = 0; y <neighbors.get(x).length;y++)
+			{
+				System.out.print(neighbors.get(x)[y]);
+			}
+			System.out.println();
+		}
 		
 	}
 	
