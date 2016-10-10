@@ -102,17 +102,11 @@ public class GraphGenerator {
 			System.out.println();
 		}
 		
-		System.out.println(testGraph.routeValue(route,graph));
-		ArrayList<int[]> neighbors = testGraph.getNeighborList(route);
+		//System.out.println(testGraph.routeValue(route,graph));
+		//ArrayList<int[]> neighbors = testGraph.getNeighborList(route);
 		
-		for(int x = 0; x < neighbors.size();x++)
-		{
-			for(int y = 0; y <neighbors.get(x).length;y++)
-			{
-				System.out.print(neighbors.get(x)[y]);
-			}
-			System.out.println();
-		}
+		HillClimber climber = new HillClimber();
+		climber.climbHill(route, graph);
 		
 	}
 	
