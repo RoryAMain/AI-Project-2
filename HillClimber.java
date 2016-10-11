@@ -23,18 +23,6 @@ public class HillClimber {
 		
 		GraphGenerator theGenerator = new GraphGenerator();
 		
-		/*
-		//Print out graph
-		for(int x = 0; x <route.length; x++)
-		{
-			for(int y =0; y<route.length;y++)
-			{
-				System.out.print(graph[x][y] + ", ");
-			}
-			System.out.println("\n");
-		}
-		//
-		*/
 		
 		while(restartCount < maxRestarts)
 		{
@@ -77,8 +65,8 @@ public class HillClimber {
 			stuck = false;
 			//System.out.println("Restarting randomly.\n");
 		}
-		
-		System.out.println("Best route found:\n");
+		System.out.println("Number of restarts: " + restartCount);
+		System.out.println("Best route found:");
 		for(int y = 0; y < bestRoute.length;y++)
 		{
 			System.out.print(bestRoute[y] + ",");

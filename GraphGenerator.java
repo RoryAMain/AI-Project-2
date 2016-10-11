@@ -97,6 +97,7 @@ public class GraphGenerator {
 	    }
 	}
 	
+	/*
 	public static void main(String[] args)
 	{
 		
@@ -114,6 +115,6 @@ public class GraphGenerator {
 		climber.climbHill(route, graph, 5000);
 		//climber.climbHill(route, graph, 50000);
 	}
-	
+	*/
 	
 }
