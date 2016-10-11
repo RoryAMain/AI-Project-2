@@ -84,30 +84,35 @@ public class GraphGenerator {
 		return neighborList;
 	}
 	
+	public void shuffleArray(int[] array)
+	{
+	    int index, temp;
+	    Random random = new Random();
+	    for (int i = array.length - 1; i > 0; i--)
+	    {
+	        index = random.nextInt(i + 1);
+	        temp = array[index];
+	        array[index] = array[i];
+	        array[i] = temp;
+	    }
+	}
 	
 	public static void main(String[] args)
 	{
-		int size = 5;
+		
+		int size = 10;
 		GraphGenerator testGraph = new GraphGenerator();
 		int[][] graph = testGraph.getGraphOfSize(size);
 		
-		int[] route = {0,1,2,3,4};
-		
-		for(int x = 0; x <size; x++)
-		{
-			for(int y =0; y<size;y++)
-			{
-				System.out.print(graph[x][y] + ", ");
-			}
-			System.out.println();
-		}
-		
-		//System.out.println(testGraph.routeValue(route,graph));
-		//ArrayList<int[]> neighbors = testGraph.getNeighborList(route);
+		int[] route = {0,1,2,3,4,5,6,7,8,9};
 		
 		HillClimber climber = new HillClimber();
-		climber.climbHill(route, graph);
-		
+		//climber.climbHill(route, graph,5);
+		//climber.climbHill(route, graph, 50);
+		//climber.climbHill(route, graph, 1000);
+		testGraph.shuffleArray(route);
+		climber.climbHill(route, graph, 5000);
+		//climber.climbHill(route, graph, 50000);
 	}
 	
 	
