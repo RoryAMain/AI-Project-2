@@ -34,6 +34,8 @@ public class SimulatedAnnealing {
         double probability = (1.0/(Math.pow(Math.E, te/T)))*100;
         int randNum = 0;
         
+        int routesChecked = 0;
+        
         while (true) {
             if (currentScore < bestScore) {
                 bestScore = currentScore;
@@ -42,6 +44,9 @@ public class SimulatedAnnealing {
             neighborList = theGenerator.getNeighborList(route);
 
             for (int x = 0; x < neighborList.size(); x++) {
+            	
+            	routesChecked++;
+            	
                 int tempScore = theGenerator.routeValue(neighborList.get(x), graph);
                 currentScore = theGenerator.routeValue(route, graph);
                 randNum = (int)(Math.random() * 100 +1);
@@ -80,6 +85,7 @@ public class SimulatedAnnealing {
                     System.out.println(bestRoute[0]);
                     System.out.println(
                             "\nScore: " + bestScore);
+                    System.out.println("Routes Checked: " + routesChecked);
                     return;
                 }
                 //System.out.println(

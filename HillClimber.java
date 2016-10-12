@@ -1,3 +1,6 @@
+package simulatedannealing;
+
+
 import java.util.*;
 public class HillClimber {
 	
@@ -21,16 +24,24 @@ public class HillClimber {
 		int maxRestarts = maxRestartsIn;
 		ArrayList<int[]> neighborList;
 		
+		int routesChecked = 0;
+		
 		GraphGenerator theGenerator = new GraphGenerator();
 		
-		
+		//This while loop will run as long as we haven't hit the restart cap.
 		while(restartCount < maxRestarts)
 		{
 			
+			//This loop will run until we don't take a better neighbor. We have hit the local optimum.
 			while(!stuck)
 			{
 				stuck = true;
 				currentScore = theGenerator.routeValue(route, graph);
+				
+				//Uncomment this block to see every route that gets visited.
+				//For any practical purpose this is way too long though.
+				
+				//////////////////////////////////////////////////////
 				/*
 				//Printing
 				System.out.println("Current route: ");
@@ -41,16 +52,25 @@ public class HillClimber {
 				System.out.print(route[0] + ",");
 				System.out.println("\n");
 				*/
-				//System.out.println("Number of restarts: " + restartCount);
+				////////////////////////////////////////////////////////
+				
+				
+				//If the current score(the last neighbor we chose) is the best we've seen yet, keep track of it.
+				
 				if(currentScore < bestScore)
 				{
 					bestScore = currentScore;
 					System.arraycopy(route, 0, bestRoute, 0, route.length);
 				}
+				
+				//Generate the neighbors for the current route.
 				neighborList = theGenerator.getNeighborList(route);
 				
+				//For each neighbor check if it has a better value than we have now.
+				//If it does, set currentRoute to that. Also, keep the loop going.
 				for(int x = 0; x < neighborList.size();x++)
 				{
+					routesChecked++;
 					int tempScore = theGenerator.routeValue(neighborList.get(x), graph);
 					if(tempScore < currentScore)
 					{
@@ -74,6 +94,7 @@ public class HillClimber {
 		
 		System.out.println(bestRoute[0]);
 		System.out.println("\nScore: " + bestScore);
+		System.out.println("Total routes checked: " + routesChecked);
 		
 	}
 	

@@ -1,3 +1,4 @@
+package simulatedannealing;
 
 public class Driver {
 
@@ -11,6 +12,7 @@ public class Driver {
 		int[] route = {0,1,2,3,4,5,6,7,8,9};
 		
 		HillClimber climber = new HillClimber();
+                SimulatedAnnealing simulation = new SimulatedAnnealing();
 		
 		int numberOfIterations = 5;
 		
@@ -39,7 +41,7 @@ public class Driver {
 
 			System.out.println("\nSimulated Annealing:");
 			System.out.println("-------------------------");
-			//Insert call to simulated annealing here.
+			simulation.simulatedAnnealing(route, graph);
 			System.out.println("-------------------------");
 
 			System.out.println();

@@ -1,3 +1,6 @@
+package simulatedannealing;
+
+
 import java.util.*;
 public class GraphGenerator {
 	//////////////////////////////////////////////////////////////////////////
@@ -18,7 +21,18 @@ public class GraphGenerator {
 	//
 	////////////////////////////////////////////////////////////////////////////
 	
-	
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//	getGraphOfSize
+	//
+	//	Input: An int X indicating a graph of size [X][X] should be made.
+	//
+	//	Output: An int[][] representing the costs to travel from one city to another.
+	//			For example [0][1] is the cost to travel from city 0 to city 1.
+	//			These costs are automatically filled with values between 100 and 2500.
+	//
+	//
+	/////////////////////////////////////////////////////////////////////////////
 	
 	public int[][] getGraphOfSize(int sizeIn)
 	{
@@ -39,6 +53,20 @@ public class GraphGenerator {
 		
 		return graph;
 	}
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	routeValue
+	//
+	//	Input: An int[] representing the route being taken.
+	//			{0,1,2} meaning to travel from 0->1->2->0. This method fills in the final return trip,
+	//			and it need not be included in the route.
+	//			It also takes an int[][] representing the graph.
+	//
+	//	Output: Outputs an int cost to take the given route on the given graph.
+	//
+	//			Note that the route must be the same length as the graph. As every city must be visited.
+	//
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public int routeValue(int[] route, int[][] graph)
 	{
@@ -67,6 +95,34 @@ public class GraphGenerator {
 		return value;
 	}
 	
+	//////////////////////////////////////////////////////////////////////////
+	//
+	//	getNeighborList
+	//
+	//	Input: An int[] representing the route taken through the graph.
+	//
+	//	Output: An ArrayList of int arrays representing the neighbors of the given route.
+	//
+	//			Note that for this assignment we define a neighbor of an int[] to be
+	//			a slightly altered int[].
+	//			In this case we alter the array by swapping a single pair of adjacent elements.
+	//			Every possible case is a different neighbor.
+	//
+	//			As an example, given the route:
+	//
+	//			{0,1,2}
+	//
+	//			The neighbors returned are:
+	//			{1,0,2}
+	//			{0,2,1}
+	//
+	//			Keep in mind that the getValue function will always calculate the return to the beginning
+	//			of the route, so we don't need to worry about balancing the first and final elements.
+	//
+	/////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	public ArrayList<int[]> getNeighborList(int[] route)
 	{
 		ArrayList<int[]> neighborList = new ArrayList<int[]>();
@@ -83,6 +139,19 @@ public class GraphGenerator {
 		
 		return neighborList;
 	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//	shuffleArray
+	//
+	//	Input: An int array. 
+	//
+	//	Output: Void.
+	//
+	//	This function will shuffle the provided int array, making it a random route
+	//	with all of the same elements.
+	//
+	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	public void shuffleArray(int[] array)
 	{
